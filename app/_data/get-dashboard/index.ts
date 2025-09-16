@@ -91,6 +91,6 @@ export const getDashboard = async (month: string) => {
     depositsTotal,
     typesPercentage,
     totalExpensePerCategory,
-    lastTransactions,
+    lastTransactions: JSON.parse(JSON.stringify(lastTransactions)),
   };
 };
