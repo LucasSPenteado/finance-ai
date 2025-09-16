@@ -5,8 +5,8 @@ import Navbar from "../components/navbar";
 import { DataTable } from "../components/ui/data-table";
 import { transactionColumns } from "./_coloumns";
 import { redirect } from "next/navigation";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { canUserAddTransaction } from "../_data/can-user-add-transaction/index";
+import { ScrollArea } from "../components/ui/scroll-area";
 const TransactionPage = async () => {
   const { userId } = await auth();
   if (!userId) {
@@ -21,13 +21,13 @@ const TransactionPage = async () => {
   return (
     <>
       <Navbar />
-      <div className="space-y-6 overflow-hidden p-6">
+      <div className="flex flex-col space-y-6 overflow-hidden p-6">
         {/*Titulo e Botão*/}
-        <div className="flex w-full items-center justify-between p-6">
+        <div className="flex w-full items-center justify-between">
           <h1 className="text-2xl font-bold">Transações</h1>
           <AddTransactionButton userCanAddTransaction={userCanAddTransaction} />
         </div>
-        <ScrollArea>
+        <ScrollArea className="h-full">
           <DataTable
             columns={transactionColumns}
             data={JSON.parse(JSON.stringify(transactions))}
